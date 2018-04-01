@@ -18,11 +18,11 @@ Table of contents
 SET UP
 ======
 
-Before running the UI tests and the API tests verify that the API is online. This is because my heroku account is free, as soon as the API is not being used heroku turns it off.
+Before running the UI tests and the API tests verify that the API is online. This is because my heroku account is free, so as soon as the API is not being used heroku turns it off.
 
 ![alt](./images/proof.png)
 
-So as you can see **praxis-home-backend** is off.
+For example at the time I'm writing this **praxis-home-backend** is off.
 
 Start The API
 --------------
