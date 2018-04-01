@@ -160,7 +160,7 @@ In the folder *homework_t8/API_tests* you will have the following file:
 Homework.postman_collection.json
 ```
 
-Thast a file created by postman in which all the API tests are described.
+That is a file created by postman in which all the API tests are described.
 
 Now lets get started
 
