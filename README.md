@@ -1,5 +1,5 @@
-#Warning:
-####**Please follow the complete guide to evaluate the Homework and don't skip steps!!!!**
+# Warning:
+#### **Please follow the complete guide to evaluate the Homework and don't skip steps!!!!**
 
 # Table of Contents
 1. [Set Up](#SET UP)
@@ -10,7 +10,7 @@
 3. [UI test](#UI test)
 
 
-#SET UP
+# SET UP
 
 Before running the UI tests and the API tests verify that the API is online. This is because my heroku account is free, as soon as the API is not being used heroku turns it off.
 
@@ -18,7 +18,7 @@ Before running the UI tests and the API tests verify that the API is online. Thi
 
 So as you can see **praxis-home-backend** is off.
 
-###Start The API
+### Start The API
 
 To start the API you just need to go to your favorite browser and put the following URL:
 
@@ -40,8 +40,8 @@ Or if you use firefox you'll get something like this
 Now the API is set for testing.
     
 
-####Run the BackEnd Locally 
-#####(Version of the backend by the date: 2018-04-01) 
+#### Run the BackEnd Locally 
+##### (Version of the backend by the date: 2018-04-01) 
 
 Before starting clone the repo
 
@@ -91,8 +91,8 @@ Requirmetns:
 	![alt](./images/proof27.png)
     
 
-####Run the FrontEnd Locally 
-#####(Version of the frontend by the date: 2018-04-01) 
+#### Run the FrontEnd Locally 
+##### (Version of the frontend by the date: 2018-04-01) 
 
 Before starting clone the repo
 
@@ -140,7 +140,7 @@ Requirmetns:
 
 
 
-##API tests
+## API tests
 
 In the folder *API_tests* you will have the following file:
 
