@@ -11,8 +11,8 @@ Table of contents
 	* [Start The API](#start-the-api)
 	* [Run The BackEnd Locally](#run-the-backend-locally)
 	* [Run The FrontEnd Locally](#run-the-frontend-locally)
-* [API test](#api-test)
-* [UI test](#ui-test)
+* [API tests](#api-tests)
+* [UI tests](#ui-tests)
 <!--te-->
 
 SET UP
