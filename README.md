@@ -111,7 +111,7 @@ Before starting clone the repo
 git clone https://github.com/nbuitragob/homework_t8
 ```
 
-Requirmetns:
+Requirments:
 
 ```
 nodejs
@@ -144,7 +144,7 @@ angular/cli
     ```
   ![alt](./images/proof20.png)
     
-  You can acces now though your browser using *localhost:4200* 
+  You can access now though your browser using *localhost:4200* 
 	
    ![alt](./images/proof21.png)
 
