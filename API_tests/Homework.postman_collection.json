@@ -1,0 +1,435 @@
+{
+	"info": {
+		"name": "Homework",
+		"_postman_id": "600693ff-1eb7-4c25-b9b1-4523ffe09c45",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "API_get_tests",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "82cc94ae-8a81-4ea0-a1fe-328bd6b26bc2",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"",
+							"//checks whether an Array is in fact an Array of Collaborators",
+							"function isCollaborator(values){",
+							"    for(let value of values){",
+							"        if(!value.hasOwnProperty(\"id\") ||",
+							"            !value.hasOwnProperty(\"name\") ||",
+							"            !value.hasOwnProperty(\"email\") ||",
+							"            !value.hasOwnProperty(\"topicsToTeach\") ||",
+							"            !value.hasOwnProperty(\"topicsToLearn\") ||",
+							"            !value.hasOwnProperty(\"createdAt\") ){",
+							"                ",
+							"            return false;",
+							"        }",
+							"    }",
+							"    return true;",
+							"}",
+							"",
+							"pm.test(\"Gets a collaborators array\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(isCollaborator(jsonData)).to.eql(true);",
+							"});",
+							"",
+							"",
+							"function checkId(values){",
+							"    for(let value of values){",
+							"        if(value.id){",
+							"        } else {",
+							"            return false;",
+							"        }",
+							"    }",
+							"    return true;",
+							"}",
+							"",
+							"pm.test(\"The id of each collaborator is not undefined\", function(){",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(checkId(jsonData)).to.eql(true);",
+							"});",
+							"",
+							"/*",
+							"    It is very important that neither topicsToTeach nor topicsToLearn are undefined",
+							"    because we are going to do CRUD operations over these arrays",
+							"*/",
+							"",
+							"function areArraysDefined(values){",
+							"    for(let value of values){",
+							"        if(value.topicsToTeach === undefined || value.topicsToTeach === null){",
+							"            return false;   ",
+							"        }",
+							"        if(value.topicsToLearn === undefined || value.topTeachTeach === null){",
+							"            return false;            ",
+							"        }",
+							"    }",
+							"    return true;",
+							"}",
+							"",
+							"pm.test(\"topicsToTeach and topicsToLearn are neither null nor undefined\", function(){",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(areArraysDefined(jsonData)).to.eql(true);",
+							"});",
+							"",
+							"",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "addTokenTo",
+							"value": "queryParams",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"expertise\": \"1\",\n    \"topic\": {\n        \"name\": \"C++\",\n        \"description\": \"Created from postman!!\"\n    }\n}"
+				},
+				"url": {
+					"raw": "https://praxis-homework-backend.herokuapp.com/collaborators",
+					"protocol": "https",
+					"host": [
+						"praxis-homework-backend",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"collaborators"
+					]
+				},
+				"description": "The service \"GET /collaborators\" is tested"
+			},
+			"response": []
+		},
+		{
+			"name": "API_add_detail",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1adb05b2-0bad-4b58-b6b1-d9ae8d9ca854",
+						"type": "text/javascript",
+						"exec": [
+							"//setting up variables that will be used throughout the test",
+							"",
+							"pm.sendRequest(\"https://praxis-homework-backend.herokuapp.com/collaborators/\", function (err, response) {",
+							"    let i = 0;",
+							"    while(response.json()[i].topicsToTeach === null){",
+							"        i = i + 1;",
+							"    }",
+							"    pm.globals.set('collaboratorId', response.json()[i].id);",
+							"    pm.environment.set('topicsToLearn', response.json()[i].topicsToLearn);",
+							"    pm.environment.set('topicsToTeach', response.json()[i].topicsToTeach);",
+							"    ",
+							"    console.log(\"collaboratorId:    \" + pm.globals.get('collaboratorId'));",
+							"    console.log(\"topicsToTeach:\");",
+							"    console.log(pm.environment.get('topicsToTeach'));",
+							"    console.log(\"topicsToLearn:\");",
+							"    console.log(pm.environment.get('topicsToLearn'));",
+							"    ",
+							"    test1();",
+							"});",
+							"",
+							"",
+							"",
+							"",
+							"/*",
+							"    The creation of a new detail with a new topic is going to be tested:",
+							"*/",
+							"",
+							"",
+							"function isDetailArray(values){",
+							"    for(let value of values){",
+							"        if(!value.hasOwnProperty(\"url\") ||",
+							"            !value.hasOwnProperty(\"addedAt\") ||",
+							"            !value.hasOwnProperty(\"expertise\") ||",
+							"            !value.hasOwnProperty(\"topic\") ){",
+							"                ",
+							"            return false;",
+							"        }",
+							"    }",
+							"    return true;",
+							"}",
+							"",
+							"function test1(){",
+							"    tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"    pm.test(\"The response is an array of details\", function(){",
+							"        var jsonData = pm.response.json();",
+							"        pm.expect(isDetailArray(jsonData)).to.eql(true);",
+							"    });",
+							"    test2();",
+							"}",
+							"",
+							"function wasCreated(values){",
+							"    for(let value of values){",
+							"        if(value.topic.name === \"C\" &&",
+							"           value.expertise === \"intermediate\" &&",
+							"           value.topic.description === \"Created from postman\"){",
+							"            ",
+							"            return true;",
+							"        }",
+							"    }",
+							"    return false;",
+							"}",
+							"",
+							"function test2(){",
+							"    pm.test(\"The topic and the detail were created\", function(){",
+							"        var jsonData = pm.response.json();",
+							"        pm.expect(isDetailArray(jsonData)).to.eql(true);",
+							"    });",
+							"    test3();",
+							"}",
+							"",
+							"",
+							"function deleteTopic(){",
+							"    console.log(\"topicTestId: \" + pm.globals.get('topicTestId'));",
+							"    var url = \"https://praxis-homework-backend.herokuapp.com/collaborators/\" + pm.globals.get('topicTestId') ;",
+							"    pm.sendRequest({",
+							"        url: url,",
+							"        method: 'DELETE'",
+							"    }, function (err, res) {",
+							"        isclean();",
+							"        console.log(res);",
+							"    });",
+							"}",
+							"",
+							"function test3(){",
+							"    pm.sendRequest(\"https://praxis-homework-backend.herokuapp.com/topics/\", function (err, response) {",
+							"        for(let value of response.json()){",
+							"            if(value.name === \"C\"){",
+							"                console.log(value.id);",
+							"                pm.globals.set('topicTestId', value.id);",
+							"                deleteFromTopicsToTeach();",
+							"            }",
+							"        }",
+							"        ",
+							"    });",
+							"}",
+							"",
+							"function deleteFromTopicsToTeach(){",
+							"    let url = \"https://praxis-homework-backend.herokuapp.com/collaborators/\" + pm.globals.get('collaboratorId') ",
+							"            + \"/topicsToTeach/\" + pm.globals.get('topicTestId') ;",
+							"    pm.sendRequest({",
+							"        url: url,",
+							"        method: 'DELETE'",
+							"    }, function (err, res) {",
+							"        deleteTopic();",
+							"    });",
+							"",
+							"}",
+							"",
+							"//checking that the array is again clean",
+							"function checkId(values){",
+							"    for(let value of values){",
+							"        if(value.topic.name === \"C\"){",
+							"            console.log(value.topic.id);",
+							"            return false;",
+							"        } ",
+							"    }",
+							"    return true;",
+							"}",
+							"",
+							"",
+							"function isclean(){",
+							"    pm.sendRequest(\"https://praxis-homework-backend.herokuapp.com/collaborators/\", function (err, response) {",
+							"        let i = 0;",
+							"        while(response.json()[i].topicsToTeach === null){",
+							"            i = i + 1;",
+							"        }",
+							"        pm.globals.set('collaboratorId', response.json()[i].id);",
+							"        pm.environment.set('topicsToLearn', response.json()[i].topicsToLearn);",
+							"        pm.environment.set('topicsToTeach', response.json()[i].topicsToTeach);",
+							"        ",
+							"        pm.test(\"The id C is not in the array\", function(){",
+							"            pm.expect(checkId(pm.environment.get('topicsToTeach'))).to.eql(true);",
+							"        });",
+							"    ",
+							"    });",
+							"}",
+							"",
+							"",
+							"    "
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"topic\": {\n            \"name\": \"C\",\n            \"description\": \"Created from postman\"\n        },\n        \"expertise\": \"1\"\n}"
+				},
+				"url": {
+					"raw": "https://praxis-homework-backend.herokuapp.com/collaborators/{{collaboratorId}}/topicsToTeach/",
+					"protocol": "https",
+					"host": [
+						"praxis-homework-backend",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"collaborators",
+						"{{collaboratorId}}",
+						"topicsToTeach",
+						""
+					]
+				},
+				"description": "Tests regarding de creation of a new detail which is supposed to be stored in \"topicsToTeach\""
+			},
+			"response": []
+		},
+		{
+			"name": "API_delete_detail",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6a9796f6-f36e-49b6-ae8e-203c669239ee",
+						"type": "text/javascript",
+						"exec": [
+							"//setting up variables that will be used throughout the test",
+							"",
+							"console.log(\"topic to be deleted: \" + pm.globals.get('topicTestId'));",
+							"console.log(\"collaboratorId:    \" + pm.globals.get('collaboratorId'));",
+							"console.log(\"topicsToTeach:\");",
+							"console.log(pm.environment.get('topicsToTeach'));",
+							"console.log(\"topicsToLearn:\");",
+							"console.log(pm.environment.get('topicsToLearn'));",
+							"",
+							"/*Deleting the test topic from \"Topics\"*/",
+							"var url = \"https://praxis-homework-backend.herokuapp.com/topics/\" + pm.globals.get('topicTestId') ;",
+							"pm.sendRequest({",
+							"    url: url,",
+							"    method: 'DELETE'",
+							"}, function (err, res) {",
+							"    console.log(res);",
+							"});",
+							"",
+							"function checkId(values){",
+							"    for(let value of values){",
+							"        if(value.topic.name === \"C\"){",
+							"            return false;",
+							"        } ",
+							"    }",
+							"    return true;",
+							"}",
+							"",
+							"pm.test(\"The id C is not in the array\", function(){",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(checkId(jsonData)).to.eql(true);",
+							"});",
+							"",
+							"",
+							"",
+							"",
+							"/*",
+							"    API_add_detail must be executed first otherwise this ",
+							"*/",
+							"",
+							"",
+							""
+						]
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "edb22363-c817-40e1-8325-7ac2e5adc447",
+						"type": "text/javascript",
+						"exec": [
+							"pm.sendRequest(\"https://praxis-homework-backend.herokuapp.com/collaborators/\", function (err, response) {",
+							"    let i = 0;",
+							"    while(response.json()[i].topicsToTeach === null){",
+							"        i = i + 1;",
+							"    }",
+							"    pm.globals.set('collaboratorId', response.json()[i].id);",
+							"    pm.environment.set('topicsToLearn', response.json()[i].topicsToLearn);",
+							"    pm.environment.set('topicsToTeach', response.json()[i].topicsToTeach);",
+							"});",
+							"",
+							"var url = \"https://praxis-homework-backend.herokuapp.com/collaborators/\" + pm.globals.get('collaboratorId') + \"/topicsToTeach/\";",
+							"pm.sendRequest({",
+							"    url: url,",
+							"    method: 'POST',",
+							"    header: {",
+							"        'content-type': 'application/json'",
+							"    },",
+							"    body: {",
+							"        mode: 'raw',",
+							"        raw: JSON.stringify({",
+							"                                topic: {",
+							"                                    name: \"C\",",
+							"                                    description: \"Created from postman\"",
+							"                                },",
+							"                                expertise: \"1\"",
+							"                            })",
+							"    }",
+							"}, function (err, res) {",
+							"    for(let value of res.json()){",
+							"        if(value.topic.name === \"C\"){",
+							"            pm.globals.set('topicTestId', value.topic.id);",
+							"        }",
+							"    }",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://praxis-homework-backend.herokuapp.com/collaborators/{{collaboratorId}}/topicsToTeach/{{topicTestId}}",
+					"protocol": "https",
+					"host": [
+						"praxis-homework-backend",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"collaborators",
+						"{{collaboratorId}}",
+						"topicsToTeach",
+						"{{topicTestId}}"
+					]
+				},
+				"description": "This test adds the detail of the topic: \"C\" then it deletes \"C\" and checks that \"C\" no longer exists in topicsToTeach"
+			},
+			"response": []
+		}
+	]
+}
