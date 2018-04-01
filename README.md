@@ -1,16 +1,22 @@
+
 # Warning:
 #### **Please follow the complete guide to evaluate the Homework and don't skip steps!!!!**
 
-# Table of Contents
-1. [Set Up](#SET UP)
-	1.1. [Start The API](#Start The API)
-	1.2. [Run The BackEnd Locally](#Run the BackEnd Locally)
-	1.3. [Run The FrontEnd Locally](#Run the FrontEnd Locally)
-2. [API test](#API test)
-3. [UI test](#UI test)
 
+Table of contents
+=================
 
-# SET UP
+<!--ts-->
+* [Set Up](#set-up)
+	* [Start The API](#start-the-api)
+	* [Run The BackEnd Locally](#run-the-backend-locally)
+	* [Run The FrontEnd Locally](#run-the-frontend-locally)
+* [API test](#api-test)
+* [UI test](#ui-test)
+<!--te-->
+
+SET UP
+======
 
 Before running the UI tests and the API tests verify that the API is online. This is because my heroku account is free, as soon as the API is not being used heroku turns it off.
 
@@ -18,13 +24,14 @@ Before running the UI tests and the API tests verify that the API is online. Thi
 
 So as you can see **praxis-home-backend** is off.
 
-### Start The API
+Start The API
+--------------
 
 To start the API you just need to go to your favorite browser and put the following URL:
 
-```
+   ```
 https://praxis-homework-backend.herokuapp.com
-    ```
+ ```
 
 It also works if you click [here](https://praxis-homework-backend.herokuapp.com)
 
@@ -40,8 +47,10 @@ Or if you use firefox you'll get something like this
 Now the API is set for testing.
     
 
-#### Run the BackEnd Locally 
-##### (Version of the backend by the date: 2018-04-01) 
+Run the BackEnd Locally
+======================
+(Version of the backend by the date: 2018-04-01)
+----------------------------------------------
 
 Before starting clone the repo
 
@@ -52,22 +61,22 @@ git clone https://github.com/nbuitragob/homework_t8
 Requirmetns:
 
 ```
-	java 8
+    java 8
     maven
 ```
 
 1. Taking *homework_t8* as the root go to the folder *BE_code*
 	```
-/homework_t8
-└───/API_test
-└───/BE_code <- HERE
-└───/FE_code 
-└───/UI_test 
-
-	```
-    ```
+	/homework_t8
+	└───/API_test
+	└───/BE_code <- HERE
+	└───/FE_code 
+	└───/UI_test
+	
+	
     cd FE_code
-    ```
+ 	```
+
 2. Run the following command
     ```
     mvn package
@@ -80,19 +89,21 @@ Requirmetns:
 	```
     java -jar target/topics-0.0.1-SNAPSHOT.jar 
     ```
-    ![alt](./images/proof25.png)
+  ![alt](./images/proof25.png)
     
-    You can acces now though your browser using *localhost:8080* 
+  You can acces now though your browser using *localhost:8080* 
     
-    ![alt](./images/proof26.png)
+   ![alt](./images/proof26.png)
 
-	Or if you use firefox you'll get something like this
+  Or if you use firefox you'll get something like this
 
-	![alt](./images/proof27.png)
+   ![alt](./images/proof27.png)
     
 
-#### Run the FrontEnd Locally 
-##### (Version of the frontend by the date: 2018-04-01) 
+Run the FrontEnd Locally
+=========================
+(Version of the frontend by the date: 2018-04-01)
+-------------------------------------------------
 
 Before starting clone the repo
 
@@ -103,23 +114,23 @@ git clone https://github.com/nbuitragob/homework_t8
 Requirmetns:
 
 ```
-	nodejs
-    npm
-    angular/cli
+nodejs
+npm
+angular/cli
 ```
 
 1. Taking *homework_t8* as the root go to the folder *FE_code*
 	```
-/homework_t8
-└───/API_test
-└───/BE_code
-└───/FE_code <- HERE
-└───/UI_test 
+	/homework_t8
+	└───/API_test
+	└───/BE_code
+	└───/FE_code <- HERE
+	└───/UI_test 
+	
+	
+
+	cd FE_code
 	```
-    
-    ```
-    cd FE_code
-    ```
 
 2. Run the following command
     ```
@@ -128,24 +139,25 @@ Requirmetns:
     ![alt](./images/proof19.png)
     
 3. **if** you are sure that the heroku API (https://praxis-homework-backend.herokuapp.com) is running **then** you can start the frontend locally by executing this command:
-	```
-    	ng serve
     ```
-    ![alt](./images/proof20.png)
+    ng serve
+    ```
+  ![alt](./images/proof20.png)
     
-    You can acces now though your browser using *localhost:4200* 
+  You can acces now though your browser using *localhost:4200* 
 	
    ![alt](./images/proof21.png)
 
 
 
 
-## API tests
+API tests
+=========
 
 In the folder *API_tests* you will have the following file:
 
 ```
-	Homework.postman_collection.json
+Homework.postman_collection.json
 ```
 
 This file needs to be downloaded .
@@ -207,26 +219,26 @@ This file needs to be downloaded .
 Congratulation you have successfully run the API tests.
 
 
-## UI tests
-
+UI tests
+========
 For this you will need:
 
 ```
-    several terminals
-    nodejs
-    npm
+several terminals
+nodejs
+npm
 ```
         
 1. Download the folder UI_test
 2. Once Downloaded cd into it
-```
+	```
 	cd UI_test
-```
+	```
 3. Then open a terminal in this location and execute
-```
+	```
 	npm install
-```
-	![alt](./images/proof15.png)
+	```
+   ![alt](./images/proof15.png)
     
 4. Using **two (2)** terminals and taking UI_test as the root directory of both terminal
 
@@ -245,11 +257,11 @@ For this you will need:
     ```
 With this command you are in fact running the UI test
 
-    Please remmember that because of the licence I use in heroku (I don't pay a dime...) getting the frontend page for the first time could take a while.
+   Please remmember that because of the licence I use in heroku (I don't pay a dime...) getting the frontend page for the first time could take a while.
 
-    ![alt](./images/proof17.png)
+   ![alt](./images/proof17.png)
 
-    ![alt](./images/proof18.png)
+   ![alt](./images/proof18.png)
     
 Congratulation you succesfully run the UI tests
 
@@ -276,6 +288,7 @@ To ease the navigation through the folers this is the structure of the folder **
 EP268 is the reference of the User Story of the project in *Mercurio*
     
     
+
 
 
 
