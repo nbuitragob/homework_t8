@@ -170,6 +170,7 @@ Now lets get started
 	![alt](./images/proof1.png)
 
 3. Now open Postman (if you don't have Postman you can download it [here](https://www.getpostman.com/apps))
+	
 	![alt](./images/proof2.png)
     
 4. Close that first window, then click on file ("archivo" if you have postman in spanish) 
@@ -177,9 +178,11 @@ Now lets get started
 	![alt](./images/proof3.png)
  	
 5. Then click on import
+
 	![alt](./images/proof4.png)
     
 6. Import *Homework.postman_collection.json* by clicking "Choose Files" and then selecting the file *Homework.postman_collection.json* from where you download it.
+	
 	![alt](./images/proof5.png)
     
     ![alt](./images/proof6.png)
