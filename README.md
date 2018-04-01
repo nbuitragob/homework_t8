@@ -154,13 +154,15 @@ angular/cli
 API tests
 =========
 
-In the folder *API_tests* you will have the following file:
+In the folder *homework_t8/API_tests* you will have the following file:
 
 ```
 Homework.postman_collection.json
 ```
 
-This file needs to be downloaded .
+Thast a file created by postman in which all the API tests are described.
+
+Now lets get started
 
 1. Open your browser
 2. Type *https://praxis-homework-backend.herokuapp.com* on your web borwser bar. This will turn on the backend and it should take a while since heroku needs to compile the backend.
